@@ -1,0 +1,21 @@
+{
+    debug
+    on_demand_tls {
+        ask https://portfolio-starter-kit-beta-six.vercel.app/api/tls_authoriser
+        
+        burst 5
+        interval 2m
+    }
+}
+
+https:// {
+    tls {
+        on_demand
+    }
+
+    reverse_proxy https://portfolio-starter-kit-beta-six.vercel.app {
+        header_down Strict-Transport-Security max-age=31536000
+        header_up X-Real-IP {remote}
+        header_up Host {upstream_hostport}
+    }
+}
