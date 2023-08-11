@@ -6,6 +6,12 @@
         burst 5
         interval 2m
     }
+
+    storage redis {
+        host {$CADDY_CLUSTERING_REDIS_HOST}
+        tls_enabled {$CADDY_CLUSTERING_REDIS_TLS}
+        tls_insecure {$CADDY_CLUSTERING_REDIS_TLS_INSECURE}
+    }
 }
 
 https:// {
